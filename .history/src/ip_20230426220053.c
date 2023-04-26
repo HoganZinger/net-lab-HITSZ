@@ -117,7 +117,8 @@ void ip_fragment_out(buf_t *buf, uint8_t *ip, net_protocol_t protocol, int id, u
     
     // calculate checksum
     header->hdr_checksum16 = checksum16((uint16_t*)header, 20);
-    
+    header->hdr_checksum16 = my_checksum;
+
     // send
     arp_out(buf, ip);
 }

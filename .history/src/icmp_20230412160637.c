@@ -11,16 +11,6 @@
 static void icmp_resp(buf_t *req_buf, uint8_t *src_ip)
 {
     // TO-DO
-    buf_init(&txbuf, req_buf->len);
-    // copy data
-    buf_copy(&txbuf, req_buf, 0);
-    // add header
-    icmp_hdr_t *header = (icmp_hdr_t*)txbuf.data;
-    header->type = 0;
-    header->code = 0;
-    header->checksum16 = 0;
-    uint16_t mychecksum = checksum16((uint16_t*)txbuf.data, txbuf.len);
-    header->checksum16 = mychecksum;
 }
 
 /**
@@ -32,12 +22,6 @@ static void icmp_resp(buf_t *req_buf, uint8_t *src_ip)
 void icmp_in(buf_t *buf, uint8_t *src_ip)
 {
     // TO-DO
-    if(buf->len > 8){
-        icmp_hdr_t *header = (icmp_hdr_t*)buf->data;
-        if(header->type == 8 && header->code == 0){
-            icmp_resp(buf, src_ip);
-        }
-    }
 }
 
 /**

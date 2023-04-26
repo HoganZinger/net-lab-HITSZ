@@ -1,10 +1,10 @@
-Start testing: Apr 26 17:28 ?D1¨²¡À¨º¡Á?¨º¡À??
+Start testing: Apr 26 22:01 ?D1¨²¡À¨º¡Á?¨º¡À??
 ----------------------------------------------------------
 4/6 Testing: ip_test
 4/6 Test: ip_test
 Command: "D:/ProgrammingMonkey/comp-network/net-lab/build/ip_test.exe" "D:/ProgrammingMonkey/comp-network/net-lab/testing/data/ip_test"
 Directory: D:/ProgrammingMonkey/comp-network/net-lab/build
-"ip_test" start time: Apr 26 17:28 ?D1¨²¡À¨º¡Á?¨º¡À??
+"ip_test" start time: Apr 26 22:01 ?D1¨²¡À¨º¡Á?¨º¡À??
 Output:
 ----------------------------------------------------------
 [0;34mTest begin.
@@ -41,11 +41,11 @@ Sample input all processed, checking output
 [0m[1;33mFor this test, log is only a reference. Your implementation is OK if your pcap file is the same to the demo pcap file.
 [0m
 <end of output>
-Test time =   0.14 sec
+Test time =   0.17 sec
 ----------------------------------------------------------
 Test Passed.
-"ip_test" end time: Apr 26 17:28 ?D1¨²¡À¨º¡Á?¨º¡À??
+"ip_test" end time: Apr 26 22:01 ?D1¨²¡À¨º¡Á?¨º¡À??
 "ip_test" time elapsed: 00:00:00
 ----------------------------------------------------------
 
-End testing: Apr 26 17:28 ?D1¨²¡À¨º¡Á?¨º¡À??
+End testing: Apr 26 22:01 ?D1¨²¡À¨º¡Á?¨º¡À??
