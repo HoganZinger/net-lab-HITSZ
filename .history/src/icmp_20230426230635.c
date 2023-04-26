@@ -37,13 +37,13 @@ void icmp_in(buf_t *buf, uint8_t *src_ip)
     // TO-
     if(buf->len < 8)
         return;
-    
-    icmp_hdr_t *header = (icmp_hdr_t*)buf->data;
-    if(header->type == ICMP_TYPE_ECHO_REQUEST && 
-        header->code == ICMP_TYPE_ECHO_REPLY){
-        icmp_resp(buf, src_ip);
+    if(buf->len > 8){
+        icmp_hdr_t *header = (icmp_hdr_t*)buf->data;
+        if(header->type == ICMP_TYPE_ECHO_REQUEST && 
+            header->code == ICMP_TYPE_ECHO_REPLY){
+            icmp_resp(buf, src_ip);
+        }
     }
-    
 }
 
 /**
@@ -71,8 +71,6 @@ void icmp_unreachable(buf_t *recv_buf, uint8_t *src_ip, icmp_code_t code)
     header-> type = ICMP_TYPE_UNREACH;
     header->code = code;
     header->checksum16 = checksum16((uint16_t*)txbuf.data,txbuf.len);
-    header->id16 = 0;
-    header->seq16 = 0;
     // send
     ip_out(&txbuf, src_ip, NET_PROTOCOL_ICMP);
 

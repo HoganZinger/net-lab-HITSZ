@@ -71,8 +71,6 @@ void icmp_unreachable(buf_t *recv_buf, uint8_t *src_ip, icmp_code_t code)
     header-> type = ICMP_TYPE_UNREACH;
     header->code = code;
     header->checksum16 = checksum16((uint16_t*)txbuf.data,txbuf.len);
-    header->id16 = 0;
-    header->seq16 = 0;
     // send
     ip_out(&txbuf, src_ip, NET_PROTOCOL_ICMP);
 
