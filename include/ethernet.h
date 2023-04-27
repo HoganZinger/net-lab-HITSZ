@@ -6,7 +6,7 @@
 #define ETHERNET_MIN_TRANSPORT_UNIT 46 //以太网最小传输单元
 
 #pragma pack(1)
-
+// MAC头部,封装在buf的data前面,在网络上传输的数据帧格式为:报头 MAC头部 数据 报尾,本实验需要修改的是数据
 typedef struct ether_hdr
 {
     uint8_t dst[NET_MAC_LEN]; // 目标mac地址

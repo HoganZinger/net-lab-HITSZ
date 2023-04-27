@@ -20,7 +20,8 @@ int buf_init(buf_t *buf, size_t len)
         fprintf(stderr, "Error in buf_init:%zu\n", len);
         return -1;
     }
-
+    //有效数据的长度 MAC头部+负载
+    // 理论上一开始len是0,data是自顶向下进行添加的，数组下标越小越后添加
     buf->len = len;
     buf->data = buf->payload + BUF_MAX_LEN / 2 - len;
     return 0;
@@ -34,12 +35,15 @@ int buf_init(buf_t *buf, size_t len)
  * @return int 成功为0，失败为-1
  */
 int buf_add_header(buf_t *buf, size_t len)
-{
+{   
+    // 越界了
     if (buf->data - len < buf->payload)
     {
         fprintf(stderr, "Error in buf_add_header:%zu+%zu\n", buf->len, len);
         return -1;
     }
+    //自底向上添加
+    //修改data的指向
     buf->len += len;
     buf->data -= len;
     return 0;
@@ -59,6 +63,8 @@ int buf_remove_header(buf_t *buf, size_t len)
         fprintf(stderr, "Error in buf_remove_header:%zu-%zu\n", buf->len, len);
         return -1;
     }
+    //自顶向下的减少
+    //修改data的指向
     buf->len -= len;
     buf->data += len;
     return 0;
@@ -72,12 +78,14 @@ int buf_remove_header(buf_t *buf, size_t len)
  * @return int 成功为0，失败为-1
  */
 int buf_add_padding(buf_t *buf, size_t len)
-{
+{   
+    //len是要添加字节的数量
     if (buf->data + buf->len + len >= buf->payload + BUF_MAX_LEN)
     {
         fprintf(stderr, "Error in buf_add_padding:%zu+%zu\n", buf->len, len);
         return -1;
     }
+    //从buf->data+buf->len开始一直补len个0
     memset(buf->data + buf->len, 0, len);
     buf->len += len;
     return 0;
@@ -109,7 +117,8 @@ int buf_remove_padding(buf_t *buf, size_t len)
  * @param len 占位用，与memcpy保持形式一致，无意义
  */
 void buf_copy(void *pdst, const void *psrc, size_t len)
-{
+{   
+    //中规中矩拷贝函数
     buf_t *dst = pdst;
     const buf_t *src = psrc;
     assert(src->data >= src->payload);

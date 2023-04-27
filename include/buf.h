@@ -7,7 +7,7 @@
 
 typedef struct buf //协议栈的通用数据包buffer, 可以在头部装卸数据，以供协议头的添加和去除
 {
-    size_t len;                   // 包中有效数据大小
+    size_t len;                   // 包中有效数据大小,是指负载的长度
     uint8_t *data;                // 包的数据起始地址
     uint8_t payload[BUF_MAX_LEN]; // 最大负载数据量
 } buf_t;

@@ -65,6 +65,8 @@ int main(int argc, char* argv[]){
                         memset(buf2.data,0,len);
                         buf_remove_header(&buf2, len);
                         // printf("ip_out: hd_len:%d\tip:%s\tpro:%d\n",len,print_ip(ip),pro);
+                        // buf此时是IP协议数据负载
+                        //ip是目标ip，pro是协议类型
                         ip_out(&buf2,ip,pro);
                 }else{
                         ethernet_in(&buf);

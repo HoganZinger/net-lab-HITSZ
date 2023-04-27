@@ -79,6 +79,7 @@ void *map_get(map_t *map, const void *key)
     {
         uint8_t *entry = map_entry_get(map, i);
         if (map_entry_valid(map, entry) && !memcmp(key, entry, map->key_len))
+            //返回一个指定的value值
             return entry + map->key_len;
     }
     return NULL;
@@ -107,7 +108,8 @@ int map_set(map_t *map, const void *key, const void *value)
     {
         uint8_t *entry = map_entry_get(map, i);
         if (!map_entry_valid(map, entry))
-        {
+        {   
+            //插入并设置时间戳
             memcpy(entry, key, map->key_len);
             map->value_constuctor(entry + map->key_len, value, map->value_len);
             *(time_t *)(entry + map->key_len + map->value_len) = time(NULL);

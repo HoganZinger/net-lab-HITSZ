@@ -1,8 +1,7 @@
-eth_in 2 0.0893327
-eth_out 2 0.0860963
-arp_test 7 0.0235655
-ip_test 4 0.0278943
-ip_frag_test 2 0.0744163
-icmp_test 0 0
+icmp_test 6 0.025217
+ip_frag_test 2 0.0739904
+ip_test 2 0.07047
+arp_test 1 0.14913
+eth_in 1 0.117016
+eth_out 1 0.121196
 ---
-icmp_test

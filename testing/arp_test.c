@@ -57,10 +57,12 @@ int main(int argc, char* argv[]){
                         buf_remove_header(&buf2, sizeof(ether_hdr_t));
                         uint8_t * ip = buf.data + 30;
                         // net_protocol_t pro = buf.data[13] ? NET_PROTOCOL_ARP : NET_PROTOCOL_IP;
+                        //buf2.data此时就是负载
                         arp_out(&buf2, ip);
-                }else{
+                }else{  
                         ethernet_in(&buf);
                 }
+                //打印arp_table和arp_buf
                 log_tab_buf();
         }
         if(ret < 0){

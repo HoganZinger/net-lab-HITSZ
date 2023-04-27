@@ -37,8 +37,11 @@ int main(int argc, char* argv[]){
                 printf("\b\b%02d",i);
                 fprintf(control_flow,"\nRound %02d -----------------------------\n",i++);
                 buf_copy(&buf2, &buf, 0);
+                //将data的头部置为0
                 memset(buf.data,0,sizeof(ether_hdr_t));
+                //修改data指针的位置
                 buf_remove_header(&buf, sizeof(ether_hdr_t));
+                //计算出MAC头部的类型
                 int proto = buf2.data[12];
                 proto <<= 8;
                 proto |= buf2.data[13];
